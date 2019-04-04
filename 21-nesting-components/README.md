@@ -1,6 +1,6 @@
 # vuejs-playlist
 
-> vue js projecr
+> vue js project
 
 ## Build Setup
 
