@@ -1,13 +1,10 @@
 <template>
 	<div id="show-blogs">
-		<h1>All Blog Articles</h1>
+		<h1>List Blog Titles</h1>
 		<input type="text" v-model="search" placeholder="search blogs">
 		<!-- <div v-for="blog in blogs" class="single-blog"> -->
 		<div v-for="blog in filteredBlogs" class="single-blog">
-			<router-link v-bind:to="'/blog/' + blog.id">
-				<h2>{{ blog.title | to-uppercase }}</h2>
-			</router-link>
-			<article>{{ blog.body | snippet }}</article>
+			<h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
 		</div>
 	</div>
 </template>
@@ -35,6 +32,21 @@ export default {
 		});
 	},
 	computed: {
+	},
+	filters: {
+		// 'to-uppercase': function(value) { // the same as below, just written in a different way
+		// 	return value.toUpperCase();
+		// }
+		toUppercase(value) {
+			return value.toUpperCase();
+		}
+	},
+	directives: {
+		'rainbow': {
+			bind(el, binding, vnode) {
+				el.style.color = "#" + Math.random().toString().slice(2,8);
+			}
+		}
 	},
 	mixins: [
 		searchMixin
